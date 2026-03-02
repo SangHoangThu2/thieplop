@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thiệp Chúc 8/3 💐</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            background: url("/static/background.jpg") no-repeat center center fixed;
+            background-size: cover;
+            font-family: "Segoe UI", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            width: 420px;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 2;
+        }
+
+        h1 {
+            color: #ff5c8a;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #444;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .flower {
+            position: absolute;
+            top: -50px;
+            font-size: 24px;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            from {
+                transform: translateY(-50px);
+            }
+
+            to {
+                transform: translateY(110vh);
+            }
+        }
+
+        .music-btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            background: #ff5c8a;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- THIỆP -->
+    <div class="card">
+        <h1>🌸 Chúc Mừng Ngày Quốc Tế Phụ Nữ 8/3 🌸</h1>
+
+        <p>
+            Nhân ngày đặc biệt này,<br>
+            chúc những người phụ nữ luôn<br>
+            mạnh mẽ, hạnh phúc và rạng rỡ 🌷<br><br>
+            Cảm ơn vì đã luôn yêu thương<br>
+            và làm cho cuộc sống trở nên đẹp hơn 💖
+        </p>
+
+        <button class="music-btn" onclick="toggleMusic()">🎵 Bật / Tắt Nhạc</button>
+    </div>
+
+    <!-- NHẠC NỀN -->
+    <audio id="bg-music" loop>
+        <source src="/static/music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- SCRIPT -->
+    <script>
+        const music = document.getElementById("bg-music");
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+            } else {
+                music.pause();
+            }
+        }
+
+        // Hoa rơi
+        const flowers = ["🌸", "🌼", "🌷", "💐", "🌺"];
+
+        function createFlower() {
+            const flower = document.createElement("div");
+            flower.className = "flower";
+            flower.innerText = flowers[Math.floor(Math.random() * flowers.length)];
+            flower.style.left = Math.random() * 100 + "vw";
+            flower.style.animationDuration = (5 + Math.random() * 5) + "s";
+            document.body.appendChild(flower);
+
+            setTimeout(() => {
+                flower.remove();
+            }, 10000);
+        }
+
+        setInterval(createFlower, 300);
+    </script>
+
+</body>
+</html>
