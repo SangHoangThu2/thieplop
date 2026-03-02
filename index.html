@@ -2,122 +2,119 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Thiệp Chúc 8/3 💐</title>
+    <title>Thiệp Tri Ân</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
-        body {
+        * {
             margin: 0;
-            height: 100vh;
-            overflow: hidden;
-            background: url("/static/background.jpg") no-repeat center center fixed;
-            background-size: cover;
+            padding: 0;
+            box-sizing: border-box;
             font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            background: url("static/background.jpg") no-repeat center center/cover;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .overlay {
+            background: rgba(0, 0, 0, 0.55);
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.9);
-            width: 420px;
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
             z-index: 2;
+            text-align: center;
+            padding: 40px;
+            max-width: 700px;
+            animation: fadeIn 2s ease;
         }
 
         h1 {
-            color: #ff5c8a;
-            margin-bottom: 15px;
+            font-size: 3em;
+            margin-bottom: 20px;
         }
 
         p {
-            color: #444;
-            font-size: 16px;
-            line-height: 1.6;
+            font-size: 1.4em;
+            line-height: 1.8;
         }
 
-        .flower {
-            position: absolute;
-            top: -50px;
-            font-size: 24px;
-            animation: fall linear infinite;
+        .from {
+            margin-top: 30px;
+            font-style: italic;
+            font-size: 1.2em;
         }
 
-        @keyframes fall {
+        @keyframes fadeIn {
             from {
-                transform: translateY(-50px);
+                opacity: 0;
+                transform: translateY(30px);
             }
-
             to {
-                transform: translateY(110vh);
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        .music-btn {
-            margin-top: 15px;
-            padding: 10px 20px;
+        button {
+            margin-top: 30px;
+            padding: 12px 25px;
+            font-size: 1em;
             border: none;
-            border-radius: 20px;
-            background: #ff5c8a;
-            color: white;
+            border-radius: 25px;
             cursor: pointer;
+            background: #ff7eb3;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.85;
         }
     </style>
 </head>
-
 <body>
 
-    <!-- THIỆP -->
+    <div class="overlay"></div>
+
     <div class="card">
-        <h1>🌸 Chúc Mừng Ngày Quốc Tế Phụ Nữ 8/3 🌸</h1>
+        <h1>💐 Lời Tri Ân 💐</h1>
 
         <p>
-            Nhân ngày đặc biệt này,<br>
-            chúc những người phụ nữ luôn<br>
-            mạnh mẽ, hạnh phúc và rạng rỡ 🌷<br><br>
-            Cảm ơn vì đã luôn yêu thương<br>
-            và làm cho cuộc sống trở nên đẹp hơn 💖
+            Cảm ơn cô vì đã luôn tận tâm,  
+            kiên nhẫn và đồng hành cùng chúng em  
+            trên chặng đường học tập.
+            <br><br>
+            Những bài học hôm nay  
+            sẽ là hành trang cho chúng em mai sau.
         </p>
 
-        <button class="music-btn" onclick="toggleMusic()">🎵 Bật / Tắt Nhạc</button>
+        <div class="from">
+            — Tập thể lớp ❤️
+        </div>
+
+        <button onclick="playMusic()">🎵 Bật nhạc</button>
     </div>
 
-    <!-- NHẠC NỀN -->
-    <audio id="bg-music" loop>
-        <source src="/static/music.mp3" type="audio/mpeg">
+    <audio id="bgMusic" loop>
+        <source src="static/music.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- SCRIPT -->
     <script>
-        const music = document.getElementById("bg-music");
-
-        function toggleMusic() {
-            if (music.paused) {
-                music.play();
-            } else {
-                music.pause();
-            }
+        function playMusic() {
+            document.getElementById("bgMusic").play();
         }
-
-        // Hoa rơi
-        const flowers = ["🌸", "🌼", "🌷", "💐", "🌺"];
-
-        function createFlower() {
-            const flower = document.createElement("div");
-            flower.className = "flower";
-            flower.innerText = flowers[Math.floor(Math.random() * flowers.length)];
-            flower.style.left = Math.random() * 100 + "vw";
-            flower.style.animationDuration = (5 + Math.random() * 5) + "s";
-            document.body.appendChild(flower);
-
-            setTimeout(() => {
-                flower.remove();
-            }, 10000);
-        }
-
-        setInterval(createFlower, 300);
     </script>
 
 </body>
